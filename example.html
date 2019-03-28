@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">click</button>
+</body>
+<script src="./src/fox-worker.js"></script>
+<script>
+    document.getElementById('btn').onclick = () => {
+        let sw = new miniWorker(function (a,b) {
+            return a+b;
+        });
+    
+        //not dom.function
+        sw.start(1,2).then((result) => {
+            console.log(result);
+            sw.close();
+        })
+    }
+</script>
+</html>
